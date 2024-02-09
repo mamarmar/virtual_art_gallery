@@ -1,5 +1,12 @@
+import NavigationBar from "../modules/NavigationBar";
+
 const CollectionPage = () => {
-  return <>Collection Page</>;
+  return (
+    <>
+      <NavigationBar />
+      Collection Page
+    </>
+  );
 };
 
 export default CollectionPage;

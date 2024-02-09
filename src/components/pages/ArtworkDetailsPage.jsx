@@ -1,5 +1,12 @@
+import NavigationBar from "../modules/NavigationBar";
+
 const ArtworkDetailsPage = () => {
-    return <>Artwork Details Page</>;
-  };
-  
-  export default ArtworkDetailsPage
+  return (
+    <>
+      <NavigationBar />
+      <p>Artwork Details Page</p>
+    </>
+  );
+};
+
+export default ArtworkDetailsPage;

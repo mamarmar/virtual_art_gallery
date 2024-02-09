@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Input from "../elements/Input";
 import { LoadingButton } from "@mui/lab";
 import { supabase } from "../../supabaseClient";
+import NavigationBar from "../modules/NavigationBar";
 
 const SignUpPage = () => {
   const [errorMessage, setErrorMessage] = useState("");
@@ -33,6 +34,7 @@ const SignUpPage = () => {
 
   return (
     <>
+      <NavigationBar />
       <h2>Sign up</h2>
       {/* <div> */}
       <form
