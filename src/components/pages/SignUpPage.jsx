@@ -1,14 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Input from "../elements/Input";
 import { LoadingButton } from "@mui/lab";
 import { supabase } from "../../supabaseClient";
 import NavigationBar from "../modules/NavigationBar";
+import { useStore } from "../../store/index";
 
 const SignUpPage = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
+  const isUser = useStore((state) => state.user.id);
+  const updateUserState = useStore((state) => state.logIn);
+
   const {
     handleSubmit,
     control,
@@ -23,14 +27,28 @@ const SignUpPage = () => {
       if (error) {
         setErrorMessage(error.message);
       } else {
-        // Update global state
+        const { user, session } = data;
         console.log("DATA", data);
+        updateUserState({
+          id: user.id,
+          email: user.email,
+          session: {
+            accessToken: session.access_token,
+            expiresAt: session.expires_at,
+          },
+        });
         navigate("/");
       }
     } catch (error) {
       console.log("ERROR", error);
     }
   };
+
+  useEffect(() => {
+    if (isUser) {
+      navigate("/");
+    }
+  });
 
   return (
     <>

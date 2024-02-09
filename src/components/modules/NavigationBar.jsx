@@ -7,20 +7,51 @@ import MenuItem from "@mui/material/MenuItem";
 import { AccountCircle } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-
-const settings = ["My Collection", "Logout"];
+import { useStore } from "../../store/index";
+import { supabase } from "../../supabaseClient";
 
 const NavigationBar = () => {
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const [isUser, setIsUser] = useState(false);
   const navigate = useNavigate();
+  const isUser = useStore((state) => state.user.id);
+  const updateUserState = useStore((state) => state.logOut);
 
+  const settings = [
+    {
+      name: "My Collection",
+      action: () => {
+        navigate("/collection");
+        handleCloseUserMenu();
+      },
+    },
+    {
+      name: "Logout",
+      action: () => {
+        logOut();
+        handleCloseUserMenu();
+      },
+    },
+  ];
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const logOut = async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) {
+        console.log("ERROR", error);
+      } else {
+        updateUserState();
+        navigate("/");
+      }
+    } catch (error) {
+      console.log("ERROR", error);
+    }
   };
 
   return (
@@ -68,8 +99,8 @@ const NavigationBar = () => {
           onClose={handleCloseUserMenu}
         >
           {settings.map((setting) => (
-            <MenuItem key={setting} onClick={handleCloseUserMenu}>
-              <Typography textAlign="center">{setting}</Typography>
+            <MenuItem key={setting.name} onClick={setting.action}>
+              <Typography textAlign="center">{setting.name}</Typography>
             </MenuItem>
           ))}
         </Menu>

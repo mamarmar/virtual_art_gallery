@@ -27,7 +27,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <HomePage />,
-    loader: getAllArtworks,
+    // loader: getAllArtworks,
   },
   { path: "/details/:artworkId", element: <ArtworkDetailsPage /> },
   { path: "/collection", element: <CollectionPage /> },
