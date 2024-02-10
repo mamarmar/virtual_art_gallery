@@ -28,7 +28,8 @@ const SignUpPage = () => {
         setErrorMessage(error.message);
       } else {
         const { user, session } = data;
-        console.log("DATA", data);
+
+        // Update global state
         updateUserState({
           id: user.id,
           email: user.email,
@@ -48,7 +49,7 @@ const SignUpPage = () => {
     if (isUser) {
       navigate("/");
     }
-  });
+  }, []);
 
   return (
     <>

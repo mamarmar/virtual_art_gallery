@@ -16,6 +16,9 @@ export const useStore = create(
       user: initialUserState,
       collections: [],
       artworks: [],
+      ui: {
+        loading: false
+      },
       logIn: (user) =>
         set((state) => ({
           ...state,
@@ -26,6 +29,11 @@ export const useStore = create(
           ...state,
           user: initialUserState,
           collections: [],
+        })),
+        getArtworks: (artworks) =>
+        set((state) => ({
+          ...state,
+          artworks,
         })),
     }),
     {

@@ -19,16 +19,20 @@ const LoginPage = () => {
     formState: { errors, isSubmitting },
   } = useForm();
 
-  const signUp = async (values, event) => {
+  const logIn = async (values, event) => {
     event.preventDefault();
     const { email, password } = values;
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
       if (error) {
         setErrorMessage(error.message);
       } else {
         const { user, session } = data;
-        console.log("DATA", data);
+        
+        // Update global state
         updateUserState({
           id: user.id,
           email: user.email,
@@ -48,7 +52,7 @@ const LoginPage = () => {
     if (isUser) {
       navigate("/");
     }
-  });
+  },[]);
 
   return (
     <>
@@ -56,7 +60,7 @@ const LoginPage = () => {
       <h2>Log in</h2>
       {/* <div> */}
       <form
-        onSubmit={handleSubmit(signUp)}
+        onSubmit={handleSubmit(logIn)}
         style={{ display: "flex", flexDirection: "column", minWidth: 300 }}
       >
         <Input
