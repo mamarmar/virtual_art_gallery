@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import axios from "axios";
 import NavigationBar from "../modules/NavigationBar";
+import ArtworksGrid from "../modules/ArtworksGrid";
 import { useStore } from "../../store/index";
 
 const HomePage = () => {
@@ -49,7 +50,7 @@ const HomePage = () => {
           medium: artwork.medium,
           division: artwork.division,
           images: artwork.images.map((image) => ({
-            baseimageurl: image.baseimageurl,
+            url: image.baseimageurl,
             format: image.format,
             copyright: image.copyright,
           })),
@@ -76,6 +77,7 @@ const HomePage = () => {
     <>
       <NavigationBar />
       Homepage
+      <ArtworksGrid artworks={artworks} />
     </>
   );
 };
