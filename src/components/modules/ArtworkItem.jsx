@@ -1,14 +1,28 @@
-import { Typography, Box, Card, CardContent, CardMedia } from "@mui/material";
+import {
+  Typography,
+  Box,
+  Card,
+  CardContent,
+  CardMedia,
+} from "@mui/material";
 
 const NoImageContainer = () => {
-  return <Box height="240px">No image</Box>;
+    return <Box height="194px">No image available</Box>;
 };
 
 const ArtworkItem = ({ artwork }) => {
   const firstImage = artwork.images[0];
 
   return (
-    <Card sx={{ height: "240px", padding: "12px", cursor: "pointer" }}>
+    <Card
+      sx={{
+        height: "240px",
+        minWidth: "150px",
+        maxWidth: "180px",
+        padding: "12px",
+        cursor: "pointer",
+      }}
+    >
       {!firstImage ? (
         <NoImageContainer />
       ) : (

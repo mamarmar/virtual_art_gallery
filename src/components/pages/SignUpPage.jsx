@@ -76,7 +76,7 @@ const SignUpPage = () => {
         />
         <p>{errorMessage}</p>
         <LoadingButton
-          color="secondary"
+          color="primary"
           variant="contained"
           type="submit"
           loading={isSubmitting}
