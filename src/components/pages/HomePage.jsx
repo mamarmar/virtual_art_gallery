@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Typography, CircularProgress } from "@mui/material";
+import { Typography, CircularProgress, Box } from "@mui/material";
 import NavigationBar from "../modules/NavigationBar";
 import Search from "../modules/Search";
 import ArtworksGrid from "../modules/ArtworksGrid";
@@ -25,13 +25,15 @@ const HomePage = () => {
   return (
     <>
       <NavigationBar />
-      Homepage
-      <Search />
-      {!artworks.length && !isLoading && (
-        <Typography> No artworks found</Typography>
-      )}
-      {!artworks.length && isLoading && <CircularProgress />}
-      {artworks.length && !isLoading && <ArtworksGrid artworks={artworks} />}
+      <Box marginTop="50px">
+        Homepage
+        <Search />
+        {!artworks.length && !isLoading && (
+          <Typography> No artworks found</Typography>
+        )}
+        {!artworks.length && isLoading && <CircularProgress />}
+        {artworks.length && !isLoading && <ArtworksGrid artworks={artworks} />}
+      </Box>
     </>
   );
 };

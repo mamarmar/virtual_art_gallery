@@ -11,80 +11,34 @@ import { Eye, EyeOff, XCircle } from "feather-icons";
 import { Controller, get } from "react-hook-form";
 import _ from "lodash";
 
-const rootStyles = {
-  backgroundColor: "white",
-};
 
 const inputLabelStyles = {
-  fontSize: "14px",
-  lineHeight: "18px",
-  fontFamily: "Inter",
-  color: "#55535A",
-  paddingBottom: "3px",
-  "& .MuiFormLabel-asterisk": {
-    color: "##5E54FF",
+color: "#646cff",
+  "&.Mui-focused": {
+    color: "#646cff",
   },
 };
 
 const rootInputStyles = {
-  disableUnderline: true,
-  "&:hover": {
-    backgroundColor: "#F3F4FF",
-    borderBottom: "2px solid #C8CEFF",
-  },
-
-  "&:focus": {
-    background: "#F3F4FF",
-    color: "#2B2A2E",
-    borderBottom: "2px solid #5E54FF",
-  },
-  "&:before": {
-    content: "none",
-  },
 
   "&:after": {
-    borderBottom: "2px solid #5E54FF",
+    borderBottom: "2px solid #646cff",
   },
 
   "&.Mui-focused": {
-    borderBottom: "none",
-    backgroundColor: "#F3F4FF",
-  },
-
-  "&.Mui-error": {
-    backgroundColor: "#FFDFDA",
-    borderBottom: "1px solid red",
+    backgroundColor: "#f9f9f9",
   },
 };
 
 const inputStyles = {
-  fontFamily: "Inter",
-  fontSize: "16px",
-  lineHeight: "24px",
-  fontWeight: 400,
-  color: "#000000",
-  padding: "13px 8px",
-  border: "none",
+  padding: "12px 6px",
   "&:hover": {
     cursor: "pointer",
   },
   "&:disabled": {
     cursor: "not-allowed",
   },
-  "&[type=number]": {
-    "-moz-appearance": "textfield",
-  },
-  "&::-webkit-outer-spin-button": {
-    "-webkit-appearance": "none",
-    margin: 0,
-  },
-  "&::-webkit-inner-spin-button": {
-    "-webkit-appearance": "none",
-    margin: 0,
-  },
-  "&::placeholder": {
-    color: "#6A6870",
-  },
+  
 };
 
 const Input = ({
@@ -108,7 +62,6 @@ const Input = ({
   ...props
 }) => {
   const [showPassword, setShowPassword] = useState(false);
-  const [hover, setHover] = useState(false);
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -177,8 +130,6 @@ const Input = ({
         }) => (
           <TextField
             type={type === "password" && showPassword ? "text" : type}
-            onMouseOver={() => setHover(true)}
-            onMouseLeave={() => setHover(false)}
             onChange={onChange}
             value={value || ""}
             placeholder={placeholder}
@@ -197,24 +148,24 @@ const Input = ({
               // ...rootStyles,
               // ...customRootStyles,
             }}
-            // InputLabelProps={{
-            //   sx: {
-            //     ...inputLabelStyles,
-            //   },
-            // }}
+            InputLabelProps={{
+              sx: {
+                ...inputLabelStyles,
+              },
+            }}
             InputProps={{
               // endAdornment: getEndAdornment(),
-              // sx: {
-              //   ...rootInputStyles,
-              //   ...customRootInputStyles,
-              // },
+              sx: {
+                ...rootInputStyles,
+                ...customRootInputStyles,
+              },
             }}
-            // inputProps={{
-            //   sx: {
-            //     ...inputStyles,
-            //     ...customInputStyles,
-            //   },
-            // }}
+            inputProps={{
+              sx: {
+                ...inputStyles,
+                ...customInputStyles,
+              },
+            }}
 
             {...props}
           />

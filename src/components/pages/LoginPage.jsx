@@ -2,11 +2,17 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Input from "../elements/Input";
+import { Box } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { supabase } from "../../supabaseClient";
 import NavigationBar from "../modules/NavigationBar";
 import { useStore } from "../../store/index";
 import { getCollection } from "../../utils/apiUtils";
+
+const containerStyle = {
+  minWidth: "400px",
+  marginTop: "10em",
+};
 
 const LoginPage = () => {
   const [errorMessage, setErrorMessage] = useState("");
@@ -63,37 +69,44 @@ const LoginPage = () => {
   return (
     <>
       <NavigationBar />
-      <h2>Log in</h2>
-      {/* <div> */}
-      <form
-        onSubmit={handleSubmit(logIn)}
-        style={{ display: "flex", flexDirection: "column", minWidth: 300 }}
-      >
-        <Input
-          name="email"
-          type="text"
-          errors={errors}
-          label="Email"
-          control={control}
-        />
-        <Input
-          name="password"
-          type="password"
-          errors={errors}
-          label="Password"
-          control={control}
-        />
-        <p>{errorMessage}</p>
-        <LoadingButton
-          color="secondary"
-          variant="contained"
-          type="submit"
-          loading={isSubmitting}
+      <Box sx={containerStyle}>
+        <h2>Welcome Back</h2>
+        <form
+          onSubmit={handleSubmit(logIn)}
+          style={{ display: "flex", flexDirection: "column" }}
         >
-          Submit
-        </LoadingButton>
-      </form>
-      {/* </div> */}
+          <Input
+            name="email"
+            type="text"
+            errors={errors}
+            label="Email"
+            control={control}
+          />
+          <Input
+            name="password"
+            type="password"
+            errors={errors}
+            label="Password"
+            control={control}
+          />
+          <p>{errorMessage}</p>
+          <button
+            type="submit"
+            className={`primary ${isSubmitting ? "button--loading" : ""}`}
+            disabled={isSubmitting}
+          >
+            Submit
+          </button>
+          {/* <LoadingButton
+            color="secondary"
+            variant="contained"
+            type="submit"
+            loading={isSubmitting}
+          >
+            Submit
+          </LoadingButton> */}
+        </form>
+      </Box>
     </>
   );
 };
