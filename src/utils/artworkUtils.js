@@ -14,10 +14,8 @@ export const fetchArtworks = async (params) => {
     // Keep only the artwork information needed
     const receivedArtworks = records.map((artwork) => {
       // Find the artist if they exist
-      let artist;
-      if (!artwork.peoplecount) {
-        artist = null;
-      } else {
+      let artist = null;
+      if (artwork.peoplecount) {
         const existingArtist = artwork.people.find(
           (person) => person.role === "Artist"
         );
@@ -27,6 +25,18 @@ export const fetchArtworks = async (params) => {
           date: existingArtist.displaydate,
           gender: existingArtist.gender,
         };
+      }
+
+      // Find the images if they exist
+      let images = [];
+      if (artwork.imagecount) {
+        images = artwork.images.map((image) => ({
+          url: image.baseimageurl,
+          format: image.format,
+          copyright: image.copyright,
+          altText: image.alttext,
+          height: image.height,
+        }));
       }
       return {
         id: artwork.id,
@@ -39,11 +49,7 @@ export const fetchArtworks = async (params) => {
         culture: artwork.culture,
         medium: artwork.medium,
         division: artwork.division,
-        images: artwork.images.map((image) => ({
-          url: image.baseimageurl,
-          format: image.format,
-          copyright: image.copyright,
-        })),
+        images,
       };
     });
 

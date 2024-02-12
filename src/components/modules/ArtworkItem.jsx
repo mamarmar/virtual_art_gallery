@@ -1,17 +1,14 @@
-import {
-  Typography,
-  Box,
-  Card,
-  CardContent,
-  CardMedia,
-} from "@mui/material";
+import { Typography, Box, Card, CardContent, CardMedia } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const NoImageContainer = () => {
-    return <Box height="194px">No image available</Box>;
+  return <Box height="194px">No image available</Box>;
 };
 
 const ArtworkItem = ({ artwork }) => {
-  const firstImage = artwork.images[0];
+  const navigate = useNavigate();
+  const { images = [] } = artwork;
+  const [firstImage = {}] = images;
 
   return (
     <Card
@@ -22,6 +19,7 @@ const ArtworkItem = ({ artwork }) => {
         padding: "12px",
         cursor: "pointer",
       }}
+      onClick={() => navigate(`/details/${artwork.id}`)}
     >
       {!firstImage ? (
         <NoImageContainer />
@@ -30,7 +28,7 @@ const ArtworkItem = ({ artwork }) => {
           component="img"
           height="194"
           image={firstImage.url}
-          alt="Paella dish"
+          alt={firstImage.altText}
         />
       )}
       <CardContent>
