@@ -32,9 +32,8 @@ const SignUpPage = () => {
         const { user, session } = data;
 
         // Create empty collection for user in database
-        await createEmptyCollection(user.id);
-        //  Get user's collection
-        const collection = await getCollection(user.id);
+        const collection = await createEmptyCollection(user.id);
+        
         // Update global state
         updateUserState({
           id: user.id,

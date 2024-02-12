@@ -30,7 +30,7 @@ export const useStore = create(
         set((state) => ({
           ...state,
           user: initialUserState,
-          collections: [],
+          collection: {},
         })),
       getArtworks: async (params) => {
         set((state) => ({
@@ -59,6 +59,24 @@ export const useStore = create(
         set((state) => ({
           ...state,
           collection,
+        })),
+      addToCollection: (artwork) =>
+        set((state) => ({
+          ...state,
+          collection: {
+            ...state.collection,
+            artworks: [...state.collection.artworks, artwork],
+          },
+        })),
+      removeFromCollection: (artworkId) =>
+        set((state) => ({
+          ...state,
+          collection: {
+            ...state.collection,
+            artworks: state.collection.artworks.filter(
+              (artwork) => artwork.id != artworkId
+            ),
+          },
         })),
     }),
     {
