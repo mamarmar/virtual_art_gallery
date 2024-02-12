@@ -44,13 +44,13 @@ const Search = () => {
           placeholder="Search artworks by title"
           control={control}
         />
-        <Input
+        {/* <Input
           name="artistName"
           type="text"
           errors={errors}
           placeholder="Search artworks by artist"
           control={control}
-        />
+        /> */}
         <LoadingButton
           color="primary"
           variant="contained"
