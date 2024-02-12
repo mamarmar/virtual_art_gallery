@@ -7,14 +7,19 @@ import { useStore } from "../../store/index";
 
 const HomePage = () => {
   const artworks = useStore((state) => state.artworks);
+  // const artists = useStore((state) => state.artists);
   const isLoading = useStore((state) => state.ui.loading);
   const getArtworks = useStore((state) => state.getArtworks);
+  // const getArtists = useStore((state) => state.getArtists);
 
   useEffect(() => {
     // Make API request if no artworks exist in global state
     if (!artworks.length) {
       getArtworks("size=15&classification=Paintings");
     }
+    // if (!artists.length) {
+    //   getArtists("q=role:Artist")
+    // }
   }, []);
 
   return (

@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { fetchArtworks } from "../utils/artworkUtils";
+import { fetchArtworks, fetchArtists } from "../utils/artworkUtils";
 
 const initialUserState = {
   id: null,
@@ -17,6 +17,7 @@ export const useStore = create(
       user: initialUserState,
       collections: [],
       artworks: [],
+      artists: [],
       ui: {
         loading: false,
       },
@@ -47,6 +48,13 @@ export const useStore = create(
           },
         }));
       },
+    //   getArtists: async (params) => {
+    //     const response = await fetchArtists(params);
+    //     set((state) => ({
+    //       ...state,
+    //       artists: response,
+    //     }));
+    //   },
     }),
     {
       name: "virtual-gallery-storage",

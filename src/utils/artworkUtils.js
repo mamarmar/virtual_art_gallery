@@ -58,3 +58,17 @@ export const fetchArtworks = async (params) => {
     console.log("ERROR", error);
   }
 };
+
+export const fetchArtists = async (params) => {
+    try {
+        const response = await axios.get(
+            `${import.meta.env.VITE_HARVARD_MUSEUMS_API}/person?${params}&apikey=${
+              import.meta.env.VITE_HARVARD_MUSEUMS_API_KEY
+            }`
+          );
+
+          console.log("RESPONSE_ARTISTS", response)
+    } catch (error) {
+        console.log("ARTISTS_ERROR", error)
+    }
+}
