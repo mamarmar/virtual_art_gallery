@@ -7,12 +7,13 @@ import {
   Menu,
   MenuItem,
   AppBar,
-  Stack
+  Stack,
 } from "@mui/material";
 import { AccountCircle } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { useStore } from "../../store/index";
 import { supabase } from "../../supabaseClient";
+import User from "feather-icons";
 
 const containerStyle = {
   position: "fixed",
@@ -21,11 +22,21 @@ const containerStyle = {
   left: 0,
   display: "flex",
   justifyContent: "space-between",
-  alignItems:"center",
+  alignItems: "center",
   borderBottom: "2.5px solid #F9F9F9",
   padding: "24px",
   backgroundColor: "white",
-  zIndex:"100",
+  zIndex: "100",
+};
+
+const profileButtonStyle = {
+  color: "black",
+  "&:focus": {
+    outline: "none",
+  },
+  "&:hover": {
+    backgroundColor: "white",
+  },
 };
 
 const NavigationBar = () => {
@@ -74,31 +85,27 @@ const NavigationBar = () => {
 
   return (
     <Box sx={containerStyle}>
-      <Typography>Visual Art Gallery</Typography>
+      <p className="logo" onClick={() => navigate("/")}>
+        Visual Art Gallery
+      </p>
 
       {!isUser && (
         <Stack direction="row" spacing="0.6rem">
-            <button className="secondary" onClick={() => navigate("/login")}>
+          <button className="secondary" onClick={() => navigate("/login")}>
             Log in
-            </button>
-            <button className="primary" onClick={() => navigate("/signup")}>
+          </button>
+          <button className="primary" onClick={() => navigate("/signup")}>
             Sign up
-            </button>
-          {/* <Button variant="outlined" onClick={() => navigate("/login")}>
-            Log in
-          </Button> */}
-          {/* <Button variant="contained" onClick={() => navigate("/signup")}>
-            Sign up
-          </Button> */}
+          </button>
         </Stack>
       )}
       {isUser && (
-        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-          <AccountCircle />
+        <IconButton onClick={handleOpenUserMenu} sx={profileButtonStyle}>
+          <AccountCircle sx={{ fontSize: "1.5em" }} />
         </IconButton>
       )}
       <Menu
-        sx={{ mt: "25px" }}
+        sx={{ mt: "3em", position:"absolute", right:"1.5em"}}
         id="menu-appbar"
         anchorEl={anchorElUser}
         anchorOrigin={{

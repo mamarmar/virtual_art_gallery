@@ -1,36 +1,26 @@
 import React, { useState } from "react";
-import {
-  Box,
-  TextField,
-  Typography,
-  IconButton,
-  InputAdornment,
-  FormLabel,
-} from "@mui/material";
-import { Eye, EyeOff, XCircle } from "feather-icons";
+import { TextField, IconButton, InputAdornment } from "@mui/material";
 import { Controller, get } from "react-hook-form";
 import _ from "lodash";
-
+import VisibilityIcon from "@mui/icons-material/VisibilityOff";
+import VisibilityOffIcon from "@mui/icons-material/Visibility";
 
 const inputLabelStyles = {
-color: "#646cff",
+  fontFamily: "Poppins",
+  color: "#BABFBF",
   "&.Mui-focused": {
     color: "#646cff",
   },
 };
 
 const rootInputStyles = {
-
   "&:after": {
     borderBottom: "2px solid #646cff",
-  },
-
-  "&.Mui-focused": {
-    backgroundColor: "#f9f9f9",
   },
 };
 
 const inputStyles = {
+  fontFamily: "Poppins",
   padding: "12px 6px",
   "&:hover": {
     cursor: "pointer",
@@ -38,7 +28,6 @@ const inputStyles = {
   "&:disabled": {
     cursor: "not-allowed",
   },
-  
 };
 
 const Input = ({
@@ -56,14 +45,11 @@ const Input = ({
   customRootStyles,
   customRootInputStyles,
   customInputStyles,
-  setValue,
-  suffix,
-  suffixStyle,
   ...props
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleShowPassword = () => {
+  const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
@@ -72,22 +58,26 @@ const Input = ({
   };
 
   const getEndAdornment = () => {
-    console.log("IN HEREEEE");
     if (type === "password") {
       return (
         <InputAdornment position="end" disablePointerEvents={disabled}>
           <IconButton
             aria-label="toggle password visibility"
-            onClick={handleShowPassword}
+            onClick={toggleShowPassword}
             onMouseDown={handleMouseDownPassword}
             edge="end"
-            sx={{ padding: "16px" }}
+            sx={{
+              padding: "16px",
+              "&:hover": {
+                backgroundColor: "transparent",
+              },
+            }}
             disabled={disabled}
           >
             {showPassword ? (
-              <Eye size={"16px"} color="#5E54FF" />
+              <VisibilityOffIcon sx={{ size: "16px", color: "#5E54FF" }} />
             ) : (
-              <Eye size={"16px"} color="#5E54FF" />
+              <VisibilityIcon size={"16px"} color="#5E54FF" />
             )}
           </IconButton>
         </InputAdornment>
@@ -97,7 +87,7 @@ const Input = ({
         <InputAdornment position="end" disablePointerEvents={disabled}>
           <IconButton
             aria-label="toggle password visibility"
-            onClick={handleShowPassword}
+            onClick={toggleShowPassword}
             onMouseDown={handleMouseDownPassword}
             edge="end"
             sx={{ padding: "16px" }}
@@ -124,10 +114,7 @@ const Input = ({
         rules={{
           required: { value: isRequired, message: errorMessage },
         }}
-        render={({
-          fieldState: { invalid, isTouched, isDirty, error },
-          field: { onChange, value },
-        }) => (
+        render={({ fieldState, field: { onChange, value } }) => (
           <TextField
             type={type === "password" && showPassword ? "text" : type}
             onChange={onChange}
@@ -144,9 +131,8 @@ const Input = ({
             }}
             variant="standard"
             sx={{
-              flex:1
-              // ...rootStyles,
-              // ...customRootStyles,
+              flex: 1,
+              ...customRootStyles,
             }}
             InputLabelProps={{
               sx: {
@@ -154,7 +140,7 @@ const Input = ({
               },
             }}
             InputProps={{
-              // endAdornment: getEndAdornment(),
+              endAdornment: getEndAdornment(),
               sx: {
                 ...rootInputStyles,
                 ...customRootInputStyles,
@@ -166,7 +152,6 @@ const Input = ({
                 ...customInputStyles,
               },
             }}
-
             {...props}
           />
         )}

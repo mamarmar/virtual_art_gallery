@@ -3,15 +3,17 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Input from "../elements/Input";
 import { Box } from "@mui/material";
-import { LoadingButton } from "@mui/lab";
 import { supabase } from "../../supabaseClient";
 import NavigationBar from "../modules/NavigationBar";
 import { useStore } from "../../store/index";
 import { createEmptyCollection, getCollection } from "../../utils/apiUtils";
 
 const containerStyle = {
-  minWidth: "400px",
+  minWidth: "360px",
   marginTop: "10em",
+  padding: "56px 32px",
+  background: "white",
+  borderRadius: "12px",
 };
 
 const SignUpPage = () => {
@@ -68,7 +70,7 @@ const SignUpPage = () => {
     <>
       <NavigationBar />
       <Box sx={containerStyle}>
-        <h2>Create an Account</h2>
+        <p className="form-header">Create an Account</p>
 
         <form
           onSubmit={handleSubmit(signUp)}
@@ -80,6 +82,7 @@ const SignUpPage = () => {
             errors={errors}
             label="Email"
             control={control}
+            customRootStyles={{marginBottom:"16px"}}
           />
           <Input
             name="password"
@@ -88,15 +91,7 @@ const SignUpPage = () => {
             label="Password"
             control={control}
           />
-          <p>{errorMessage}</p>
-          {/* <LoadingButton
-          color="primary"
-          variant="contained"
-          type="submit"
-          loading={isSubmitting}
-        >
-          Submit
-        </LoadingButton> */}
+          <p className="error-message">{errorMessage}</p>
           <button
             type="submit"
             className={`primary ${isSubmitting ? "button--loading" : ""}`}
