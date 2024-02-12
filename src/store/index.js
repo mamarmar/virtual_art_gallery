@@ -15,7 +15,7 @@ export const useStore = create(
   persist(
     (set, get) => ({
       user: initialUserState,
-      collections: [],
+      collection: {},
       artworks: [],
       artists: [],
       ui: {
@@ -48,13 +48,18 @@ export const useStore = create(
           },
         }));
       },
-    //   getArtists: async (params) => {
-    //     const response = await fetchArtists(params);
-    //     set((state) => ({
-    //       ...state,
-    //       artists: response,
-    //     }));
-    //   },
+      //   getArtists: async (params) => {
+      //     const response = await fetchArtists(params);
+      //     set((state) => ({
+      //       ...state,
+      //       artists: response,
+      //     }));
+      //   },
+      getCollection: (collection) =>
+        set((state) => ({
+          ...state,
+          collection,
+        })),
     }),
     {
       name: "virtual-gallery-storage",

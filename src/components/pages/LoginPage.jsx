@@ -6,12 +6,14 @@ import { LoadingButton } from "@mui/lab";
 import { supabase } from "../../supabaseClient";
 import NavigationBar from "../modules/NavigationBar";
 import { useStore } from "../../store/index";
+import { getCollection } from "../../utils/apiUtils";
 
 const LoginPage = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   const isUser = useStore((state) => state.user.id);
   const updateUserState = useStore((state) => state.logIn);
+  const updateCollectionState = useStore((state) => state.getCollection);
 
   const {
     handleSubmit,
@@ -31,7 +33,10 @@ const LoginPage = () => {
         setErrorMessage(error.message);
       } else {
         const { user, session } = data;
-        
+
+        //  Get user's collection
+        const collection = await getCollection(user.id);
+
         // Update global state
         updateUserState({
           id: user.id,
@@ -41,6 +46,7 @@ const LoginPage = () => {
             expiresAt: session.expires_at,
           },
         });
+        updateCollectionState(collection);
         navigate("/");
       }
     } catch (error) {
@@ -52,7 +58,7 @@ const LoginPage = () => {
     if (isUser) {
       navigate("/");
     }
-  },[]);
+  }, []);
 
   return (
     <>

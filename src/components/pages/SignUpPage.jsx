@@ -6,12 +6,14 @@ import { LoadingButton } from "@mui/lab";
 import { supabase } from "../../supabaseClient";
 import NavigationBar from "../modules/NavigationBar";
 import { useStore } from "../../store/index";
+import { createEmptyCollection, getCollection } from "../../utils/apiUtils";
 
 const SignUpPage = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   const isUser = useStore((state) => state.user.id);
   const updateUserState = useStore((state) => state.logIn);
+  const updateCollectionState = useStore((state) => state.getCollection);
 
   const {
     handleSubmit,
@@ -29,6 +31,10 @@ const SignUpPage = () => {
       } else {
         const { user, session } = data;
 
+        // Create empty collection for user in database
+        await createEmptyCollection(user.id);
+        //  Get user's collection
+        const collection = await getCollection(user.id);
         // Update global state
         updateUserState({
           id: user.id,
@@ -39,6 +45,8 @@ const SignUpPage = () => {
           },
         });
         navigate("/");
+
+        updateCollectionState(collection);
       }
     } catch (error) {
       console.log("ERROR", error);
