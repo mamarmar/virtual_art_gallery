@@ -9,8 +9,13 @@ import { useStore } from "../../store/index";
 import { createEmptyCollection, getCollection } from "../../utils/apiUtils";
 
 const containerStyle = {
-  minWidth: "360px",
+  display: "flex",
+  justifyContent: "center",
   marginTop: "10em",
+};
+
+const formContainerStyle = {
+  width: "360px",
   padding: "56px 32px",
   background: "white",
   borderRadius: "12px",
@@ -71,38 +76,40 @@ const SignUpPage = () => {
     <>
       <NavigationBar />
       <Box sx={containerStyle}>
-        <p className="form-header">Create an Account</p>
+        <Box sx={formContainerStyle}>
+          <p className="form-header">Create an Account</p>
 
-        <form
-          onSubmit={handleSubmit(signUp)}
-          style={{ display: "flex", flexDirection: "column" }}
-        >
-          <Input
-            name="email"
-            type="text"
-            errors={errors}
-            setValue={setValue}
-            label="Email"
-            control={control}
-            customRootStyles={{marginBottom:"16px"}}
-          />
-          <Input
-            name="password"
-            type="password"
-            errors={errors}
-            setValue={setValue}
-            label="Password"
-            control={control}
-          />
-          <p className="error-message">{errorMessage}</p>
-          <button
-            type="submit"
-            className={`primary ${isSubmitting ? "button--loading" : ""}`}
-            disabled={isSubmitting}
+          <form
+            onSubmit={handleSubmit(signUp)}
+            style={{ display: "flex", flexDirection: "column" }}
           >
-            Submit
-          </button>
-        </form>
+            <Input
+              name="email"
+              type="text"
+              errors={errors}
+              setValue={setValue}
+              label="Email"
+              control={control}
+              customRootStyles={{ marginBottom: "16px" }}
+            />
+            <Input
+              name="password"
+              type="password"
+              errors={errors}
+              setValue={setValue}
+              label="Password"
+              control={control}
+            />
+            <p className="error-message">{errorMessage}</p>
+            <button
+              type="submit"
+              className={`primary ${isSubmitting ? "button--loading" : ""}`}
+              disabled={isSubmitting}
+            >
+              Submit
+            </button>
+          </form>
+        </Box>
       </Box>
     </>
   );

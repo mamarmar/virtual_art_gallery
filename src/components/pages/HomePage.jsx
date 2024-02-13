@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Typography, CircularProgress, Box } from "@mui/material";
+import { CircularProgress, Box } from "@mui/material";
 import NavigationBar from "../modules/NavigationBar";
 import Search from "../modules/Search";
 import ArtworksGrid from "../modules/ArtworksGrid";
@@ -31,11 +31,15 @@ const HomePage = () => {
       <NavigationBar />
       <Box sx={containerStyle}>
         <Search />
-        {!artworks.length && !isLoading && (
-          <Typography> No artworks found</Typography>
-        )}
-        {!artworks.length && isLoading && <CircularProgress />}
-        {artworks.length && !isLoading && <ArtworksGrid artworks={artworks} />}
+        <Box sx={{ marginTop: "3em" }}>
+          {artworks.length < 1 && !isLoading && (
+            <p className="no-results-message"> No artworks found</p>
+          )}
+          {artworks.length < 1 && isLoading && <CircularProgress sx={{color:"#535bf2", marginTop:"5em"}}/>}
+          {artworks.length > 0 && !isLoading && (
+            <ArtworksGrid artworks={artworks} />
+          )}
+        </Box>
       </Box>
     </>
   );

@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { fetchArtworks, fetchArtists } from "../utils/artworkUtils";
+import { fetchArtworks, fetchArtists } from "../utils/harvardApiUtils";
 
 const initialUserState = {
   id: null,
