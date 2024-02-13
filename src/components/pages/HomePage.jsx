@@ -5,6 +5,10 @@ import Search from "../modules/Search";
 import ArtworksGrid from "../modules/ArtworksGrid";
 import { useStore } from "../../store/index";
 
+const containerStyle = {
+  marginTop: "7em",
+};
+
 const HomePage = () => {
   const artworks = useStore((state) => state.artworks);
   // const artists = useStore((state) => state.artists);
@@ -25,8 +29,7 @@ const HomePage = () => {
   return (
     <>
       <NavigationBar />
-      <Box marginTop="50px">
-        Homepage
+      <Box sx={containerStyle}>
         <Search />
         {!artworks.length && !isLoading && (
           <Typography> No artworks found</Typography>

@@ -4,6 +4,7 @@ import { Controller, get } from "react-hook-form";
 import _ from "lodash";
 import VisibilityIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityOffIcon from "@mui/icons-material/Visibility";
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 const inputLabelStyles = {
   fontFamily: "Poppins",
@@ -34,6 +35,7 @@ const Input = ({
   name,
   type,
   errors,
+  setValue,
   label,
   placeholder,
   required,
@@ -57,7 +59,7 @@ const Input = ({
     event.preventDefault();
   };
 
-  const getEndAdornment = () => {
+  const getEndAdornment = (value) => {
     if (type === "password") {
       return (
         <InputAdornment position="end" disablePointerEvents={disabled}>
@@ -82,18 +84,23 @@ const Input = ({
           </IconButton>
         </InputAdornment>
       );
-    } else {
+    } else if(type === "text" && value) {
       return (
         <InputAdornment position="end" disablePointerEvents={disabled}>
           <IconButton
-            aria-label="toggle password visibility"
-            onClick={toggleShowPassword}
+            aria-label="clear field"
+            onClick={()=> setValue(name, "")}
             onMouseDown={handleMouseDownPassword}
             edge="end"
-            sx={{ padding: "16px" }}
+            sx={{
+              padding: "16px",
+              "&:hover": {
+                backgroundColor: "transparent",
+              },
+            }}
             disabled={disabled}
           >
-            <X-Circle size={"16px"} color="#5E54FF" />
+            <HighlightOffIcon size={"16px"} color="#5E54FF" />
           </IconButton>
         </InputAdornment>
       );
@@ -140,7 +147,7 @@ const Input = ({
               },
             }}
             InputProps={{
-              endAdornment: getEndAdornment(),
+              endAdornment: getEndAdornment(value),
               sx: {
                 ...rootInputStyles,
                 ...customRootInputStyles,

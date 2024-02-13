@@ -72,13 +72,9 @@ button.secondary {
 button:hover {
   font-weight: 600;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
 
 button:disabled {
-  background-color: #BABFBF;
+  background-color: #D9DCDC;
   cursor: not-allowed;
   color: grey;
 }

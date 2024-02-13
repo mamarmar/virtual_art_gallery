@@ -26,6 +26,7 @@ const LoginPage = () => {
   const {
     handleSubmit,
     control,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm();
 
@@ -81,6 +82,7 @@ const LoginPage = () => {
             name="email"
             type="text"
             errors={errors}
+            setValue={setValue}
             label="Email"
             control={control}
             customRootStyles={{marginBottom:"16px"}}
@@ -89,6 +91,7 @@ const LoginPage = () => {
             name="password"
             type="password"
             errors={errors}
+            setValue={setValue}
             label="Password"
             control={control}
           />
