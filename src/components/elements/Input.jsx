@@ -47,6 +47,7 @@ const Input = ({
   customRootStyles,
   customRootInputStyles,
   customInputStyles,
+  startAdornment,
   ...props
 }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -147,6 +148,11 @@ const Input = ({
               },
             }}
             InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  {startAdornment}
+                </InputAdornment>
+              ),
               endAdornment: getEndAdornment(value),
               sx: {
                 ...rootInputStyles,

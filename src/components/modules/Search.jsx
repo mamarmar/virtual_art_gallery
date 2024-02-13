@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
-import { LoadingButton } from "@mui/lab";
 import { Box, Stack, Button } from "@mui/material";
 import Input from "../elements/Input";
 import { useStore } from "../../store/index";
+import SearchIcon from '@mui/icons-material/Search';
 
 const containerStyle = {
   maxWidth: "560px",
-  minWidth: "400px"
+  minWidth: "400px",
 };
 
 const Search = () => {
@@ -25,12 +25,13 @@ const Search = () => {
   const searchArtworksByTitle = (values, event) => {
     event.preventDefault();
     const { artworkTitle, artistName } = values;
-    if (!artistName) {
+    if (artworkTitle) {
       getArtworks(`title="${artworkTitle}"&classification=Paintings`);
-    } else if (!artworkTitle) {
-      getArtworks("person=34191&classification=Paintings");
-      //   getArtworks(`artist="${artistName}"&classification=Paintings`);
     }
+    // else if (!artworkTitle) {
+    //   getArtworks("person=34191&classification=Paintings");
+    //     getArtworks(`artist="${artistName}"&classification=Paintings`);
+    // }
   };
 
   const clearSearch = () => {
@@ -48,8 +49,9 @@ const Search = () => {
             type="text"
             errors={errors}
             setValue={setValue}
-            placeholder="Search artworks by title"
+            placeholder ="Search artworks by title"
             control={control}
+            startAdornment={<SearchIcon />}
           />
           {/* <Input
           name="artistName"
@@ -61,7 +63,6 @@ const Search = () => {
           <button
             type="submit"
             className={`primary ${isSubmitting ? "button--loading" : ""}`}
-            disabled={!watchArtworkTitle && !watchArtist}
           >
             Search
           </button>
