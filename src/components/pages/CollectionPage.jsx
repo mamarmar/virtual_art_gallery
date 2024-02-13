@@ -1,4 +1,4 @@
-import { Stack, Box } from "@mui/material";
+import { Stack } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import NavigationBar from "../modules/NavigationBar";
 import ArtworksGrid from "../modules/ArtworksGrid";

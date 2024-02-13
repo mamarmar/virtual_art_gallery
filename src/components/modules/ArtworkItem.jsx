@@ -143,7 +143,7 @@ const ArtworkItem = ({ artwork }) => {
               sx={favouriteButtonContainerStyle}
               onClick={addArtworkToCollection}
             >
-              <FavoriteBorderIcon disableRipple sx={{ color: "#646cff" }} />
+              <FavoriteBorderIcon sx={{ color: "#646cff" }} />
             </IconButton>
           )}
           {userId && isSavedToCollection && (
