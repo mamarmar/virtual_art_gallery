@@ -107,7 +107,7 @@ const ArtworkItem = ({ artwork }) => {
       {Object.keys(firstImage).length < 1 ? (
         <Box
           sx={{ cursor: "pointer" }}
-          onClick={() => navigate(`/details/${artwork.id}`)}
+          onClick={() => navigate(`/details/${artwork.id}`, {replace: false, state: {artwork}})}
         >
           <NoImageContainer />
         </Box>
@@ -118,7 +118,7 @@ const ArtworkItem = ({ artwork }) => {
           image={firstImage.url}
           alt={firstImage.altText}
           sx={{ cursor: "pointer" }}
-          onClick={() => navigate(`/details/${artwork.id}`)}
+          onClick={() => navigate(`/details/${artwork.id}`, {replace: false, state: {artwork}})}
         />
       )}
       <CardContent sx={cardContentStyle}>

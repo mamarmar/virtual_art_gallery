@@ -30,8 +30,8 @@ body {
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 1.7em;
+  font-weight:300;
 }
 
 button {
@@ -55,6 +55,12 @@ button.secondary {
   border-color: #646cff;
   color: #646cff;
   background-color: #f9f9f9;
+}
+button.text-button {
+  border: none;
+  color: #646cff;
+  background-color: transparent;
+  font-size: 12px;
 }
 .button--loading::after {
   content: "";
@@ -89,7 +95,7 @@ button:disabled {
 }
 
 .no-results-message {
-  font-size: 2em;
+  font-size: 1.2em;
   font-weight: 600;
   color: grey;
   text-align: start;

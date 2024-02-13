@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { Box, Button } from "@mui/material";
 import { useStore } from "../../store/index";
 import NavigationBar from "../modules/NavigationBar";
@@ -8,10 +8,12 @@ import { updateCollectionArtworks } from "../../utils/apiUtils";
 
 const ArtworkDetailsPage = () => {
   const { artworkId } = useParams();
+  const location = useLocation();
   const userId = useStore((state) => state.user.id);
   const collection = useStore((state) => state.collection);
-  const artworks = useStore((state) => state.artworks);
-  const artwork = artworks.find((artwork) => artwork.id == artworkId);
+  const {
+    state: { artwork = {} },
+  } = location;
   const { images = [] } = artwork;
   const [firstImage = {}] = images;
   const addToCollection = useStore((state) => state.addToCollection);

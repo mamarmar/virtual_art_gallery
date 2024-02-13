@@ -7,6 +7,7 @@ import { useStore } from "../../store/index";
 
 const containerStyle = {
   marginTop: "7em",
+  marginBottom: "7em",
 };
 
 const HomePage = () => {
