@@ -1,8 +1,14 @@
-# React + Vite
+# Visual Art Gallery
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Virtual Art Gallery Web Application showcasing artworks from the Harvard Art Museums.
 
-Currently, two official plugins are available:
+## Technologies Used
+<a href="https://react.dev/"><img src="https://github.com/mamarmar/tech-icons/blob/main/icons/react/react-original-wordmark.svg" height="50px" /></a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://docs.pmnd.rs/zustand/getting-started/introduction"><img src="https://github.com/pmndrs/zustand/blob/main/examples/demo/public/logo192.png" height="50px" /></a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://supabase.com/docs"><img src="https://www.vectorlogo.zone/logos/supabase/supabase-ar21.svg" height="50px" /></a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://mui.com/"><img src="https://github.com/mamarmar/tech-icons/blob/main/icons/materialui/materialui-original.svg" height="50px" /></a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
