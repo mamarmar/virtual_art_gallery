@@ -16,4 +16,4 @@ A Virtual Art Gallery Web Application showcasing artworks from the Harvard Art M
 
 ## Description
 Virtual Art Gallery is a web application showcasing artworks from the Harvard Art Musems utilising the [Harvard Art
-Museums' Collections API] (https://harvardartmuseums.org/collections/api). Detailed API documentation can be found [here] (https://github.com/harvardartmuseums/api-docs).
+Museums' Collections API](https://harvardartmuseums.org/collections/api). Detailed API documentation can be found [here](https://github.com/harvardartmuseums/api-docs).
