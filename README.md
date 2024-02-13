@@ -17,3 +17,11 @@ A Virtual Art Gallery Web Application showcasing artworks from the Harvard Art M
 ## Description
 Virtual Art Gallery is a web application showcasing artworks from the Harvard Art Musems utilising the [Harvard Art
 Museums' Collections API](https://harvardartmuseums.org/collections/api). Detailed API documentation can be found [here](https://github.com/harvardartmuseums/api-docs).
+Users get a random selection of artworks when first loading the application. They can search artworks by their title and save artworks to their collection. In order to save artworks, users need to create an account. User authentication is handled with Supabase.
+
+
+## How to Run the App
+You can run the application locally by following these steps:
+1) [Clone the Repository](https://github.com/mamarmar/virtual_art_gallery)
+2) Install the dependencies using `npm install` or `yarn install`
+3) Run the app locally with `npm run dev` or `yarn dev`
